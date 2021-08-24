@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Load Images</title>
+
+	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+	<style>
+		img {
+			height: 200px;
+		}
+		p {
+			padding-top: 15px;
+		}
+		div#screen {
+			margin-left:  44px;
+		}
+		textarea {
+			max-height: 50px;
+			height: 50px;
+			resize: none;
+		}
+		footer {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+
+	<header>
+		<textarea id="input" class="form-control"></textarea>
+		<button id="load" class="btn btn-primary btn-block">讀取</button>
+	</header>
+
+	<div id="screen"></div>
+
+	<footer>
+		<button id="print" class="btn btn-success btn-block">產出</button>
+		<textarea id="output" class="form-control" readonly="readonly"></textarea>
+	</footer>
+
+<script>
+	$(function() {
+
+		$("button#load").bind("click", function() {
+			let input = $("textarea#input").val();
+			if (input) {
+				$("div#screen").empty();
+				let inputs = input.split("\n");
+				let stringbulider = new Array();
+				$.each(inputs, function(i, e) {
+					stringbulider.push("<p>");
+					stringbulider.push(		"<button class='btn btn-danger rm'>刪除</button>");
+					stringbulider.push(		"<span>"+e+"</span>");
+					stringbulider.push(		"<br/>");
+					stringbulider.push(		"<img src='"+e+"' alt='這張圖抓不出來'>");
+					stringbulider.push("</p>");
+				});
+				$("div#screen").append(stringbulider.join(""));
+				$("footer").show();
+
+				$("button.rm").bind("click", function(e){
+					$(e.target).parent("p").remove();
+				});
+			}
+		});
+
+		$("button#print").bind("click", function() {
+			let arr = new Array();
+			$.each($("span"), function(i, e) {
+			    arr.push($(e).text());
+			});
+			$("textarea#output").val(arr.join("\n"));
+		});
+
+	});
+</script>
+</body>
+</html>

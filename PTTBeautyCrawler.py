@@ -28,7 +28,7 @@ ROOT_SOUP_LAST_PAGE_SELECT = get_last_page(ROOT_SOUP)
 # print(ROOT)
 # print(ROOT_SOUP)
 # print(ROOT_SOUP_SELECT)
-print(ROOT_SOUP_LAST_PAGE_SELECT)
+# print(ROOT_SOUP_LAST_PAGE_SELECT)
 
 URL_ARR = []
 for TOPIC_URLS in ROOT_SOUP_SELECT:
@@ -55,7 +55,7 @@ for URL in URL_ARR:
             if not contains(url, URL_CHECKER):
                 IMAGE_URLS.append(url)
     # print("================================")
-#
-# for image_url in IMAGE_URLS:
-#     print(image_url)
+
+for image_url in IMAGE_URLS:
+    print(image_url)
 

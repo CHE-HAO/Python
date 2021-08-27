@@ -1,9 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 
+# 1 - 100
+# 5000 - 5050
 
-start = 1
-end = 1000
+start = 5051
+end = 5150
 
 for i in range(start, end):
 

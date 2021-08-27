@@ -50,6 +50,12 @@
 	</footer>
 
 <script>
+	var collect = {
+		normal: [],
+		opi: [],
+		legs: [],
+		sex: []
+	};
 	$(function() {
 
 		$("button#load").bind("click", function() {
@@ -59,8 +65,13 @@
 				let inputs = input.split("\n");
 				let stringbulider = new Array();
 				$.each(inputs, function(i, e) {
-					stringbulider.push("<p>");
+					stringbulider.push("<p url='"+e+"'>");
 					stringbulider.push(		"<button class='btn btn-danger rm'>刪除</button>");
+					stringbulider.push(		"<button class='btn btn-danger normal'>抽圖</button>");
+					stringbulider.push(		"<button class='btn btn-danger opi'>抽奶子</button>");
+					stringbulider.push(		"<button class='btn btn-danger legs'>抽腿特</button>");
+					stringbulider.push(		"<button class='btn btn-danger sex'>抽sex</button>");
+					stringbulider.push(		"<br />");
 					stringbulider.push(		"<span>"+e+"</span>");
 					stringbulider.push(		"<br/>");
 					stringbulider.push(		"<img src='"+e+"' alt='這張圖抓不出來'>");
@@ -72,15 +83,36 @@
 				$("button.rm").bind("click", function(e){
 					$(e.target).parent("p").remove();
 				});
+
+				$("button.normal").bind("click", function(e){
+					collect["normal"].push($(e.target).parent("p").attr("url"));
+					$(e.target).parent("p").remove();
+				});
+
+				$("button.opi").bind("click", function(e){
+					collect["opi"].push($(e.target).parent("p").attr("url"));
+					$(e.target).parent("p").remove();
+				});
+
+				$("button.legs").bind("click", function(e){
+					collect["legs"].push($(e.target).parent("p").attr("url"));
+					$(e.target).parent("p").remove();
+				});
+
+				$("button.sex").bind("click", function(e){
+					collect["sex"].push($(e.target).parent("p").attr("url"));
+					$(e.target).parent("p").remove();
+				});
 			}
 		});
 
 		$("button#print").bind("click", function() {
-			let arr = new Array();
-			$.each($("span"), function(i, e) {
-			    arr.push($(e).text());
-			});
-			$("textarea#output").val(arr.join("\n"));
+			$("textarea#output").val(JSON.stringify(collect));
+<!--			let arr = new Array();-->
+<!--			$.each($("span"), function(i, e) {-->
+<!--			    arr.push($(e).text());-->
+<!--			});-->
+<!--			$("textarea#output").val(arr.join("\n"));-->
 		});
 
 	});

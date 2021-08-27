@@ -66,11 +66,11 @@
 				let stringbulider = new Array();
 				$.each(inputs, function(i, e) {
 					stringbulider.push("<p url='"+e+"'>");
-					stringbulider.push(		"<button class='btn btn-danger rm'>刪除</button>");
-					stringbulider.push(		"<button class='btn btn-danger normal'>抽圖</button>");
-					stringbulider.push(		"<button class='btn btn-danger opi'>抽奶子</button>");
-					stringbulider.push(		"<button class='btn btn-danger legs'>抽腿特</button>");
-					stringbulider.push(		"<button class='btn btn-danger sex'>抽sex</button>");
+					stringbulider.push(		"<button class='btn btn-danger rm' style='margin-right: 10px;'>刪除</button>");
+					stringbulider.push(		"<button class='btn btn-primary normal'>抽圖</button>");
+					stringbulider.push(		"<button class='btn btn-success opi'>抽奶子</button>");
+					stringbulider.push(		"<button class='btn btn-info legs'>抽腿特</button>");
+					stringbulider.push(		"<button class='btn btn-warning sex'>抽sex</button>");
 					stringbulider.push(		"<br />");
 					stringbulider.push(		"<span>"+e+"</span>");
 					stringbulider.push(		"<br/>");
@@ -107,12 +107,14 @@
 		});
 
 		$("button#print").bind("click", function() {
-			$("textarea#output").val(JSON.stringify(collect));
-<!--			let arr = new Array();-->
-<!--			$.each($("span"), function(i, e) {-->
-<!--			    arr.push($(e).text());-->
-<!--			});-->
-<!--			$("textarea#output").val(arr.join("\n"));-->
+			let arr = new Array();
+			$.each(collect, function(i, element) {
+			    arr.push(i+":");
+				$.each(element, function(i, e) {
+					arr.push(e);
+				});
+			});
+			$("textarea#output").val(arr.join("\n"));
 		});
 
 	});

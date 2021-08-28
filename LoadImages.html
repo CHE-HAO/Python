@@ -61,7 +61,7 @@
 		$("button#load").bind("click", function() {
 			let input = $("textarea#input").val();
 			if (input) {
-				$("div#screen").empty();
+				reset();
 				let inputs = input.split("\n");
 				let stringbulider = new Array();
 				$.each(inputs, function(i, e) {
@@ -118,6 +118,17 @@
 		});
 
 	});
+
+	function reset() {
+		$("textarea#output").val("");
+		$("div#screen").empty();
+		collect = {
+			normal: [],
+			opi: [],
+			legs: [],
+			sex: []
+		};
+	}
 </script>
 </body>
 </html>

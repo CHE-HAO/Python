@@ -4,9 +4,11 @@ from bs4 import BeautifulSoup
 # 1 - 100
 # 5000 - 5050
 # 5051 - 5100
+# 5101 - 5200
+# 5201 - 5250
 
-start = 5051
-end = 5100
+start = 5201
+end = 5250
 
 for i in range(start, end):
 

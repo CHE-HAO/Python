@@ -1,0 +1,5 @@
+var arr = new Array();
+$.each($("#main-content a"), function(i, e) {
+    arr.push(e.href);
+});
+console.log(arr.join("\n"));
